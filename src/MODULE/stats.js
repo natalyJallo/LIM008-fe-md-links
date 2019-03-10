@@ -1,12 +1,16 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.brokenStatsLinks = exports.uniqueStatsLinks = exports.statsLinks = exports.statsFunctionOfLinks = void 0;
+
 var _validate = require("./validate.js");
 
-var statsFunctionOfLinks = function statsFunctionOfLinks(response, array) {
+var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
   return new Promise(function (resolve, reject) {
-    var validationoflinks = (0, _validate.validationCorrectsLinks)(array);
+    var validationoflinks = (0, _validate.validationCorrectsLinks)(route);
     validationoflinks.then(function (validLinks) {
-      console.log(validLinks);
       var result = response(validLinks);
       resolve(result);
     }).catch(function (error) {
@@ -15,12 +19,14 @@ var statsFunctionOfLinks = function statsFunctionOfLinks(response, array) {
   });
 };
 
-var statsLinks = function statsLinks(array) {
+exports.statsFunctionOfLinks = statsFunctionOfLinks;
+
+var statsLinks = function statsLinks(route) {
   var objtStatLinks = function objtStatLinks(response) {
-    return response.length;
+    return "Total: ".concat(response.length);
   };
 
-  return statsFunctionOfLinks(objtStatLinks, array);
+  return statsFunctionOfLinks(objtStatLinks, route);
 }; // statsLinks([ { text: 'semver',
 //   href: 'https://semver.org/',
 //   file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ])
@@ -28,32 +34,31 @@ var statsLinks = function statsLinks(array) {
 //   .catch(error => console.log(error));
 
 
+exports.statsLinks = statsLinks;
+
 var uniqueStatsLinks = function uniqueStatsLinks(route) {
   var objtStatLinks = function objtStatLinks(links) {
-    return new Set(links.map(function (_ref) {
+    return "Unique: ".concat(new Set(links.map(function (_ref) {
       var href = _ref.href;
       return href;
-    })).size;
+    })).size);
   };
 
   return statsFunctionOfLinks(objtStatLinks, route);
-};
+}; // uniqueStatsLinks([ { text: 'semver',
+//   href: 'https://semver.org/',
+//   file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ])
+//   .then(resp => console.log(resp))
+//   .catch(error => console.log(error));
 
-uniqueStatsLinks([{
-  text: 'semver',
-  href: 'https://semver.org/',
-  file: "C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md"
-}]).then(function (resp) {
-  return console.log(resp);
-}).catch(function (error) {
-  return console.log(error);
-});
+
+exports.uniqueStatsLinks = uniqueStatsLinks;
 
 var brokenStatsLinks = function brokenStatsLinks(route) {
   var objtStatLinks = function objtStatLinks(links) {
-    return links.filter(function (link) {
+    return "Broken: ".concat(links.filter(function (link) {
       return link.message === 'Fail';
-    }).length;
+    }).length);
   };
 
   return statsFunctionOfLinks(objtStatLinks, route);
@@ -62,3 +67,6 @@ var brokenStatsLinks = function brokenStatsLinks(route) {
 //   file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ])
 //   .then(resp => console.log(resp))
 //   .catch(error => console.log(error));
+
+
+exports.brokenStatsLinks = brokenStatsLinks;

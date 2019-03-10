@@ -1,9 +1,9 @@
-
+import {readFileForExtracLinks} from './links.js';
 const fetch = require('node-fetch');
-// import {objetoDeLinks} from './links.js';
 
-export const validationCorrectsLinks = (arrayObjectLinks) => {
-  const walkArrayObjectLink = arrayObjectLinks.map(links => new Promise((resolve, reject) => {
+export const validationCorrectsLinks = (route) => {
+const walkArrayObjectLink = readFileForExtracLinks(route);
+  const arrayPromises = walkArrayObjectLink.map(links => new Promise((resolve, reject) => {
     fetch(links.href)
       .then(response => {
         if (response.status >= 200 && response.status < 400) {
@@ -17,43 +17,7 @@ export const validationCorrectsLinks = (arrayObjectLinks) => {
         }
       }).catch(error => reject(error));
   }));
-  return Promise.all(walkArrayObjectLink);
+  return Promise.all(arrayPromises);
 };
 
-
-// const validationCorrectsLinks = ({text, href}) => fetch(href)
-//   .then(({status, statusText}) => ({file, href, statusText, status, text}))
-//   .catch(() => ({status: 400, statusText: 'Fail'}));
-
-
-
-
-
-// const statsFunctionOfLinks = (response, array) => {
-//     new Promise((resolve, reject) => { 
-//       const validationoflinks = validationCorrectsLinks(array);
-//       validationoflinks.then(validLinks => {
-//         const result = response(validLinks);
-//         resolve(result);
-//       }).catch(error => reject(error));
-//     });
-//   };
-  
-//   const statsLinks = (route) => {
-//     const objtStatLinks = response => response.length;
-//     return statsFunctionOfLinks(objtStatLinks, route);
-//   };
-  
-//   statsLinks('')
-//       .then(resp => console.log(resp))
-//       .catch(error => console.log(error))
-  
-//   const uniqueStatsLinks = (route) => {
-//     const objtStatLinks = links => new Set(links.map(({href}) => href)).size;
-//     return statsFunctionOfLinks(objtStatLinks, route);
-//   };
-  
-//   const brokenStatsLinks = (route) => {
-//     const objtStatLinks = links => links.filter(link => link.message === 'Fail').length;
-//     return statsFunctionOfLinks(objtStatLinks, route);
-//   };
+// validationCorrectsLinks('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA').then(result => console.log(result));

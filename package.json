@@ -1,7 +1,7 @@
 {
-  "name": "social-network",
+  "name": "@natijallo/md-link",
   "version": "1.0.0",
-  "description": "Social Network @ Laboratoria",
+  "description": "Validate and stats of Markdown links @ Laboratoria",
   "main": "src/index.html",
   "keywords": [
     "javascript",
@@ -15,6 +15,7 @@
     "test": "jest --coverage",
     "build": "babel lib -d src"
   },
+  "bin" : { "myapp" : "./.js" },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",

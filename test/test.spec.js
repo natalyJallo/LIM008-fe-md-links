@@ -1,4 +1,4 @@
-import { converterPathAbsolute, arrayOfFile, filterToFileMd, readFileMd } from '../LIB/MODULE/links.js';
+import { converterPathAbsolute, arrayOfFile, filterToFileMd, regexFilterLinks, readFileForExtracLinks } from '../LIB/MODULE/links.js';
 
 const output = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js'];
 
@@ -9,12 +9,16 @@ const output1 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-f
 
 const output2 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md'];
 
-const output3 = ['[semver](https://semver.org/)![diferente](https://semver.org/)'];
+const output3 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md';
 
-const output4 = [ { text: 'semver',
-  href: 'https://semver.org/',
-  file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ];
+const output4 = '[semver](https://semver.org/)![diferente](https://semver.org/)';
 
+const output5 = [
+  { file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md',
+    href: 'https://semver.org/',
+    text: 'semver](https://semver.org/)![diferente'}];
+ 
+ 
 describe('converterPathAbsolute', () => {
   it('debería ser una función', () => {
     expect(typeof converterPathAbsolute).toBe('function');
@@ -45,21 +49,21 @@ describe('filterToFileMd', () => {
   });
 });
 
-describe('readFileMd', () => {
+describe('regexFilterLinks', () => {
   it('debería ser una función', () => {
-    expect(typeof readFileMd).toBe('function');
+    expect(typeof regexFilterLinks).toBe('function');
   });
-  it('Debería poder leer el contenido de los archivos markdown', () => {
-    expect(readFileMd(output2)).toEqual(output3);
+  it('Debería poder extraer los links del contenido markdown', () => {
+    expect(regexFilterLinks(output4, output3)).toEqual(output5);
   });
 });
 
-describe('regexFilterCorrectLinks', () => {
+describe('readFileForExtracLinks', () => {
   it('debería ser una función', () => {
-    expect(typeof regexFilterCorrectLinks).toBe('function');
+    expect(typeof readFileForExtracLinks).toBe('function');
   });
-  it('Debería poder extraer los links del contenido markdown', () => {
-    expect(regexFilterCorrectLinks(output3)).toEqual(output4);
+  it('Debería poder leer el archivo para extraer los links del contenido markdown', () => {
+    expect(readFileForExtracLinks(output3)).toEqual(output4);
   });
 });
 

@@ -1,12 +1,12 @@
 const path = require('path');
 const fs = require('fs');
 
-const converterPathAbsolute = (pathRelative) => {
+export const converterPathAbsolute = (pathRelative) => {
   const absolute = path.resolve(pathRelative);
   return absolute;
 };
 
-const arrayOfFile = (route) => {
+export const arrayOfFile = (route) => {
   let newArray = [];
   if (fs.lstatSync(route).isFile() === true) {
     newArray.push(route);
@@ -20,25 +20,23 @@ const arrayOfFile = (route) => {
   return newArray;
 };
 
-const arrayOfFileOfDirectory = arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA');
 
-
-const filterToFileMd = (router) => {
-  const variableFiltrado = router.filter(route => path.extname(route) === '.md');
+export const filterToFileMd = (router) => {
+  const arrayOfFilePath = arrayOfFile(router);
+  const variableFiltrado = arrayOfFilePath.filter(route => path.extname(route) === '.md');
   return variableFiltrado;
 };
 
-const arrayFilterMd = filterToFileMd(arrayOfFileOfDirectory);
 
-const regexFilterCorrectLinks = (stringOfContentMd, ruta) => {
-  const regex1 = RegExp(/^\[(.*)\]\((.+)\)/gm);
-  const arrayOfObjData = [];
+export const regexFilterLinks = (stringOfContentMd, route) => {
+  const regex1 = /(^|[^!])\[(.*)\]\((.*)\)/gm;
+  let arrayOfObjData = [];
   let array1 = regex1.exec(stringOfContentMd);
   while (array1 !== null) {
     const objectData = {
-      text: array1[1].slice(0, 50),
-      href: array1[2],
-      file: ruta
+      text: array1[2].slice(0, 50),
+      href: array1[3],
+      file: route
     };
     arrayOfObjData.push(objectData);
     array1 = regex1.exec(stringOfContentMd);
@@ -46,17 +44,18 @@ const regexFilterCorrectLinks = (stringOfContentMd, ruta) => {
   return arrayOfObjData;
 };
 
-const readFileForExtracLinks = (arrfilemd) => {
+
+export const readFileForExtracLinks = (route) => {
+  const filterMd = filterToFileMd(route);
   let arrayOfLinks = [];
-  arrfilemd.forEach((element) => {
-    const readFileContent = fs.readFileSync(element, 'utf8');
-    arrayOfLinks = arrayOfLinks.concat(regexFilterCorrectLinks(readFileContent, element));
+  filterMd.forEach((file) => {
+    const content = fs.readFileSync(file, 'utf8');
+    const arrFileMd = regexFilterLinks(content, route);
+    // console.log(arrFileMd);
+    arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks ;
 };
 
-export const objetoDeLinks = readFileForExtracLinks(arrayFilterMd);
+// console.log(readFileForExtracLinks('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
 
-
-// console.log(expresionRegularQueFiltraSoloLinks(arrayLinksFilter));
-// export const objetoDeLinks = regexFilterCorrectLinks(arrayLinksFilter);
