@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.brokenStatsLinks = exports.uniqueStatsLinks = exports.statsLinks = exports.statsFunctionOfLinks = void 0;
+exports.brokenStatsLinks = exports.uniqueStatsLinks = exports.totalstatsLinks = exports.statsFunctionOfLinks = void 0;
 
 var _validate = require("./validate.js");
 
@@ -21,7 +21,7 @@ var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
 
 exports.statsFunctionOfLinks = statsFunctionOfLinks;
 
-var statsLinks = function statsLinks(route) {
+var totalstatsLinks = function totalstatsLinks(route) {
   var objtStatLinks = function objtStatLinks(response) {
     return "Total: ".concat(response.length);
   };
@@ -34,7 +34,7 @@ var statsLinks = function statsLinks(route) {
 //   .catch(error => console.log(error));
 
 
-exports.statsLinks = statsLinks;
+exports.totalstatsLinks = totalstatsLinks;
 
 var uniqueStatsLinks = function uniqueStatsLinks(route) {
   var objtStatLinks = function objtStatLinks(links) {

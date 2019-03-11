@@ -1,30 +1,36 @@
 import { converterPathAbsolute, arrayOfFile, filterToFileMd, regexFilterLinks, readFileForExtracLinks } from '../LIB/MODULE/links.js';
 
-const output = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js'];
+const input = '../LIM008-fe-md-links/test/PRUEBITA/marked.js';
 
-const output1 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\dos\\koko.js.txt',
+const input1 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA';
+
+const input2 = ['[semver](https://semver.org/)![diferente](https://semver.org/)'];
+
+// const input3 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md';
+
+const output = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js';
+
+const output1 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js'];
+
+const output2 = [ 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\dos\\koko.js.txt',
   'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\dos\\tres\\pepe.md.txt',
   'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js',
-  'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md'];
+  'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' ];
 
-const output2 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md'];
+const output3 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md'];
 
-const output3 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md';
+const output4 = [ { text: 'semver',
+  href: 'https://semver.org/',
+  file:
+ 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA' } ];
 
-const output4 = '[semver](https://semver.org/)![diferente](https://semver.org/)';
-
-const output5 = [
-  { file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md',
-    href: 'https://semver.org/',
-    text: 'semver](https://semver.org/)![diferente'}];
- 
  
 describe('converterPathAbsolute', () => {
   it('debería ser una función', () => {
     expect(typeof converterPathAbsolute).toBe('function');
   });
   it('Debería poder convertir una ruta relativa en absoluta', () => {
-    expect(converterPathAbsolute('../LIM008-fe-md-links/test/PRUEBITA/marked.js')).toEqual('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js');
+    expect(converterPathAbsolute(input)).toEqual(output);
   });
 });
 
@@ -33,10 +39,10 @@ describe('arrayOfFile', () => {
     expect(typeof arrayOfFile).toBe('function');
   });
   it('Debería poder recorrer los archivos del directorio', () => {
-    expect(arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js')).toEqual(output);
+    expect(arrayOfFile(output)).toEqual(output1);
   });
   it('Debería poder recorrer los archivos del directorio', () => {
-    expect(arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\')).toEqual(output1);
+    expect(arrayOfFile(input1)).toEqual(output2);
   });
 });
 
@@ -45,7 +51,7 @@ describe('filterToFileMd', () => {
     expect(typeof filterToFileMd).toBe('function');
   });
   it('Debería poder filtrar solo los archivos markdown', () => {
-    expect(filterToFileMd(output1)).toEqual(output2);
+    expect(filterToFileMd(input1)).toEqual(output3);
   });
 });
 
@@ -54,7 +60,7 @@ describe('regexFilterLinks', () => {
     expect(typeof regexFilterLinks).toBe('function');
   });
   it('Debería poder extraer los links del contenido markdown', () => {
-    expect(regexFilterLinks(output4, output3)).toEqual(output5);
+    expect(regexFilterLinks(input2, input1)).toEqual(output4);
   });
 });
 
@@ -63,7 +69,7 @@ describe('readFileForExtracLinks', () => {
     expect(typeof readFileForExtracLinks).toBe('function');
   });
   it('Debería poder leer el archivo para extraer los links del contenido markdown', () => {
-    expect(readFileForExtracLinks(output3)).toEqual(output4);
+    expect(readFileForExtracLinks(input1)).toEqual(output4);
   });
 });
 

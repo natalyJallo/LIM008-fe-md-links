@@ -7,6 +7,7 @@ export const converterPathAbsolute = (pathRelative) => {
 };
 
 export const arrayOfFile = (route) => {
+  const routeAbsolute = 
   let newArray = [];
   if (fs.lstatSync(route).isFile() === true) {
     newArray.push(route);
@@ -20,6 +21,7 @@ export const arrayOfFile = (route) => {
   return newArray;
 };
 
+// console.log(arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
 
 export const filterToFileMd = (router) => {
   const arrayOfFilePath = arrayOfFile(router);
@@ -29,15 +31,17 @@ export const filterToFileMd = (router) => {
 
 
 export const regexFilterLinks = (stringOfContentMd, route) => {
-  const regex1 = /(^|[^!])\[(.*)\]\((.*)\)/gm;
+  const regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   let arrayOfObjData = [];
   let array1 = regex1.exec(stringOfContentMd);
+  // console.log(array1);
   while (array1 !== null) {
     const objectData = {
-      text: array1[2].slice(0, 50),
+      text: array1[2].slice(0.50),
       href: array1[3],
       file: route
     };
+    // console.log(objectData);
     arrayOfObjData.push(objectData);
     array1 = regex1.exec(stringOfContentMd);
   }

@@ -2,7 +2,7 @@ import {readFileForExtracLinks} from './links.js';
 const fetch = require('node-fetch');
 
 export const validationCorrectsLinks = (route) => {
-const walkArrayObjectLink = readFileForExtracLinks(route);
+  const walkArrayObjectLink = readFileForExtracLinks(route);
   const arrayPromises = walkArrayObjectLink.map(links => new Promise((resolve, reject) => {
     fetch(links.href)
       .then(response => {

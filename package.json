@@ -2,7 +2,7 @@
   "name": "@natijallo/md-link",
   "version": "1.0.0",
   "description": "Validate and stats of Markdown links @ Laboratoria",
-  "main": "src/index.html",
+  "main": "src/md-links.js",
   "keywords": [
     "javascript",
     "npm",
@@ -15,7 +15,7 @@
     "test": "jest --coverage",
     "build": "babel lib -d src"
   },
-  "bin" : { "myapp" : "./.js" },
+  "bin" : { "md-links" : "cli.js" },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",

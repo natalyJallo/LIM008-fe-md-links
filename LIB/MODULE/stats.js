@@ -10,7 +10,7 @@ export const statsFunctionOfLinks = (response, route) => {
   });
 };  
 
-export const statsLinks = (route) => {
+export const totalstatsLinks = (route) => {
   const objtStatLinks = response => `Total: ${response.length}`;
   return statsFunctionOfLinks(objtStatLinks, route);
 };

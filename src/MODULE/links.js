@@ -30,7 +30,8 @@ var arrayOfFile = function arrayOfFile(route) {
   }
 
   return newArray;
-};
+}; // console.log(arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
+
 
 exports.arrayOfFile = arrayOfFile;
 
@@ -45,16 +46,17 @@ var filterToFileMd = function filterToFileMd(router) {
 exports.filterToFileMd = filterToFileMd;
 
 var regexFilterLinks = function regexFilterLinks(stringOfContentMd, route) {
-  var regex1 = /(^|[^!])\[(.*)\]\((.*)\)/gm;
+  var regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   var arrayOfObjData = [];
-  var array1 = regex1.exec(stringOfContentMd);
+  var array1 = regex1.exec(stringOfContentMd); // console.log(array1);
 
   while (array1 !== null) {
     var objectData = {
-      text: array1[2].slice(0, 50),
+      text: array1[2].slice(0.50),
       href: array1[3],
       file: route
-    };
+    }; // console.log(objectData);
+
     arrayOfObjData.push(objectData);
     array1 = regex1.exec(stringOfContentMd);
   }

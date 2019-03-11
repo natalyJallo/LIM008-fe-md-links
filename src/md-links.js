@@ -9,11 +9,10 @@ var _stats = require("./MODULE/stats");
 
 var _validate = require("./MODULE/validate.js");
 
-var options = {
-  validate: false,
-  stats: false
-};
-
+// const options = {
+//   validate: false,
+//   stats: false
+// };
 var optionsValidationAndStats = function optionsValidationAndStats(route, options) {
   var promises = 0;
 
