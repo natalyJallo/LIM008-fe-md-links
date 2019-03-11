@@ -29,7 +29,7 @@ var validationCorrectsLinks = function validationCorrectsLinks(route) {
     });
   });
   return Promise.all(arrayPromises);
-}; // validationCorrectsLinks('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA').then(result => console.log(result));
+}; // validationCorrectsLinks('test\\PRUEBITA').then(result => console.log(result));
 
 
 exports.validationCorrectsLinks = validationCorrectsLinks;

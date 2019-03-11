@@ -24,8 +24,8 @@
     "url": "https://github.com/natalyJallo/LIM008-fe-md-links/issues"
   },
   "homepage": "https://github.com/natalyJallo/LIM008-fe-md-links#readme",
-  "bin" : {
-     "md-links" : "src/cli.js" 
+  "bin": {
+    "md-links": "./src/cli.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

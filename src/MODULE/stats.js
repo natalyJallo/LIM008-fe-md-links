@@ -27,9 +27,7 @@ var totalstatsLinks = function totalstatsLinks(route) {
   };
 
   return statsFunctionOfLinks(objtStatLinks, route);
-}; // statsLinks([ { text: 'semver',
-//   href: 'https://semver.org/',
-//   file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ])
+}; // console.log(totalstatsLinks('test\\PRUEBITA'))
 //   .then(resp => console.log(resp))
 //   .catch(error => console.log(error));
 

@@ -3,17 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.optionsValidationAndStats = void 0;
+exports.mdLinks = void 0;
 
 var _stats = require("./MODULE/stats");
 
-var _validate = require("./MODULE/validate.js");
+var _validate = require("./module/validate.js");
 
 // const options = {
 //   validate: false,
-//   stats: false
+//   stats: true
 // };
-var optionsValidationAndStats = function optionsValidationAndStats(route, options) {
+var mdLinks = function mdLinks(route, options) {
   var promises = 0;
 
   if (!options.validate && !options.stats) {
@@ -52,7 +52,7 @@ var optionsValidationAndStats = function optionsValidationAndStats(route, option
 
   ;
   return promises;
-};
+}; // optionsValidationAndStats('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA', options);
 
-exports.optionsValidationAndStats = optionsValidationAndStats;
-optionsValidationAndStats("C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA", options);
+
+exports.mdLinks = mdLinks;

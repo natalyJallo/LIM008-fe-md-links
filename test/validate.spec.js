@@ -1,4 +1,4 @@
-import { validationCorrectsLinks } from '../LIB/MODULE/validate.js';
+import { validationCorrectsLinks } from '../lib/module/validate.js';
 
 const route = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA';
 

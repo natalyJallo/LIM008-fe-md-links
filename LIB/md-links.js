@@ -1,12 +1,12 @@
 import {statsLinks, uniqueStatsLinks, brokenStatsLinks} from './MODULE/stats';
-import {validationCorrectsLinks} from './MODULE/validate.js';
+import {validationCorrectsLinks} from './module/validate.js';
 
 // const options = {
 //   validate: false,
-//   stats: false
+//   stats: true
 // };
 
-export const optionsValidationAndStats = (route, options) => {
+export const mdLinks = (route, options) => {
   let promises = 0;
   if (!options.validate && !options.stats) {
     validationCorrectsLinks(route)

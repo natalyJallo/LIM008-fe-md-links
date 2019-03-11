@@ -1,4 +1,4 @@
-import { statsFunctionOfLinks, totalLinks, uniqueStatsLinks, brokenStatsLinks } from '../LIB/MODULE/stats.js';
+import { statsFunctionOfLinks, totalLinks, uniqueStatsLinks, brokenStatsLinks } from '../lib/module/stats.js';
 
 const input1 = 'function() { }';
 const route = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA';

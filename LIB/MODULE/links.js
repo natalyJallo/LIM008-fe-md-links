@@ -21,7 +21,7 @@ export const arrayOfFile = (route) => {
   return newArray;
 };
 
-// console.log(arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
+// console.log(arrayOfFile('test\\PRUEBITA'));
 
 export const filterToFileMd = (router) => {
   const arrayOfFilePath = arrayOfFile(router);
@@ -61,5 +61,5 @@ export const readFileForExtracLinks = (route) => {
   return arrayOfLinks ;
 };
 
-// console.log(readFileForExtracLinks('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
+// console.log(readFileForExtracLinks('test\\PRUEBITA'));
 

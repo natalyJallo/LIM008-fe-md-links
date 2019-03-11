@@ -17,20 +17,21 @@ var converterPathAbsolute = function converterPathAbsolute(pathRelative) {
 exports.converterPathAbsolute = converterPathAbsolute;
 
 var arrayOfFile = function arrayOfFile(route) {
+  var routeAbsolute = converterPathAbsolute(route);
   var newArray = [];
 
-  if (fs.lstatSync(route).isFile() === true) {
-    newArray.push(route);
+  if (fs.lstatSync(routeAbsolute).isFile() === true) {
+    newArray.push(routeAbsolute);
   } else {
-    var arrayPath = fs.readdirSync(route);
+    var arrayPath = fs.readdirSync(routeAbsolute);
     arrayPath.forEach(function (file) {
-      var arrayOfFileRoute = arrayOfFile(path.join(route, file));
+      var arrayOfFileRoute = arrayOfFile(path.join(routeAbsolute, file));
       newArray = newArray.concat(arrayOfFileRoute);
     });
   }
 
   return newArray;
-}; // console.log(arrayOfFile('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
+}; // console.log(arrayOfFile('test\\PRUEBITA'));
 
 
 exports.arrayOfFile = arrayOfFile;
@@ -76,7 +77,7 @@ var readFileForExtracLinks = function readFileForExtracLinks(route) {
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks;
-}; // console.log(readFileForExtracLinks('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA'));
+}; // console.log(readFileForExtracLinks('test\\PRUEBITA'));
 
 
 exports.readFileForExtracLinks = readFileForExtracLinks;

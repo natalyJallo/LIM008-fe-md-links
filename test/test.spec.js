@@ -1,4 +1,4 @@
-import { converterPathAbsolute, arrayOfFile, filterToFileMd, regexFilterLinks, readFileForExtracLinks } from '../LIB/MODULE/links.js';
+import { converterPathAbsolute, arrayOfFile, filterToFileMd, regexFilterLinks, readFileForExtracLinks } from '../lib/module/links.js';
 
 const input = '../LIM008-fe-md-links/test/PRUEBITA/marked.js';
 
