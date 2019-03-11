@@ -7,14 +7,14 @@ export const converterPathAbsolute = (pathRelative) => {
 };
 
 export const arrayOfFile = (route) => {
-  const routeAbsolute = 
+  const routeAbsolute = converterPathAbsolute(route);
   let newArray = [];
-  if (fs.lstatSync(route).isFile() === true) {
-    newArray.push(route);
+  if (fs.lstatSync(routeAbsolute).isFile() === true) {
+    newArray.push(routeAbsolute);
   } else {
-    const arrayPath = fs.readdirSync(route);
+    const arrayPath = fs.readdirSync(routeAbsolute);
     arrayPath.forEach((file) => {
-      const arrayOfFileRoute = arrayOfFile(path.join(route, file));
+      const arrayOfFileRoute = arrayOfFile(path.join(routeAbsolute, file));
       newArray = newArray.concat(arrayOfFileRoute);
     });
   }

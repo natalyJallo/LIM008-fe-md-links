@@ -1,5 +1,5 @@
 {
-  "name": "mde-links",
+  "name": "md-links",
   "version": "1.0.0",
   "description": "Validate and stats of Markdown links @ Laboratoria",
   "main": "src/md-links.js",
@@ -15,7 +15,18 @@
     "test": "jest --coverage",
     "build": "babel lib -d src"
   },
-  "bin" : { "md-links" : "cli.js" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natalyJallo/LIM008-fe-md-links.git"
+  },
+  "author": "Nataly Jallo",
+  "bugs": {
+    "url": "https://github.com/natalyJallo/LIM008-fe-md-links/issues"
+  },
+  "homepage": "https://github.com/natalyJallo/LIM008-fe-md-links#readme",
+  "bin" : {
+     "md-links" : "src/cli.js" 
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
