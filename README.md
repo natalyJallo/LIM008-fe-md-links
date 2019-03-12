@@ -115,11 +115,11 @@ Broken: 1
 ## Iplementacion de la libreria
 Se creo el flujograma para tener una guía de la implementación y poder definir la arquitectura del proyecto.
 
-![Diagrama-de-Flujo](img-readme\Diagram.png)
+![Diagrama-de-Flujo](img-readme/Diagram.png)
 
 Como siguiente paso se creo un cuadro con las funciones a crear, input, output y los nombres de las funciones a implementar.
 
-![Tabla-de-Funciones](img-readme\cuadro.jpeg)
+![Tabla-de-Funciones](img-readme/cuadro.jpeg)
 
 Se hizo uso de las herramientas de GitHub para la organización y planificación del proyecto como los milestone, issues, project.
 
@@ -127,12 +127,12 @@ Project:
 
 [GitHub](https://github.com/natalyJallo/LIM008-fe-md-links/projects/1)
 
-![Proyect](img-readme\backlog.JPG)
+![Proyect](img-readme/backlog.JPG)
 
 Issues:
 
-![Issues](img-readme\issues.JPG)
+![Issues](img-readme/issues.JPG)
 
 Milestone:
 
-![Milestones](img-readme\milestone.JPG)
+![Milestones](img-readme/milestone.JPG)
