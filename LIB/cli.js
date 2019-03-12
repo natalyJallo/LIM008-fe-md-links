@@ -34,13 +34,11 @@ if (args.length === 3) {
     uniqueStatsLinks(route),
     brokenStatsLinks(route)
       .then(resp => resp.forEach(values => console.log(values))).catch(err => err);
-    console.log(mdLinks(path, option));
   } else if ((args[1] === '--stats' || args[2] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
     statsLinks(route),
     uniqueStatsLinks(route),
     brokenStatsLinks(route)
       .then(resp => resp.forEach(values => console.log(values))).catch(err => err);
-    console.log(mdLinks(path, option));
   }
 }
 

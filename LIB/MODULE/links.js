@@ -31,11 +31,11 @@ export const filterToFileMd = (router) => {
 
 
 export const regexFilterLinks = (stringOfContentMd, route) => {
-  console.log(stringOfContentMd);
+  // console.log(stringOfContentMd);
   const regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   let arrayOfObjData = [];
   let array1 = regex1.exec(stringOfContentMd);
-  console.log(array1);
+  // console.log(array1);
   while (array1 !== null) {
     const objectData = {
       text: array1[2].slice(0.50),
@@ -55,7 +55,7 @@ export const readFileForExtracLinks = (route) => {
   let arrayOfLinks = [];
   filterMd.forEach((file) => {
     const content = fs.readFileSync(file, 'utf8');
-    console.log(content);
+    // console.log(content);
     const arrFileMd = regexFilterLinks(content, route);
     // console.log(arrFileMd);
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
@@ -63,5 +63,5 @@ export const readFileForExtracLinks = (route) => {
   return arrayOfLinks ;
 };
 
-console.log(readFileForExtracLinks('test\\PRUEBITA'));
+// console.log(readFileForExtracLinks('test\\PRUEBITA'));
 

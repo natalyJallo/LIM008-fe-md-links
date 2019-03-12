@@ -11,7 +11,7 @@ export const mdLinks = (route, options) => {
     ? validationCorrectsLinks(route)
     : readFileForExtracLinks(route);
 };
-mdLinks('test\\PRUEBITA', options);
+// mdLinks('test\\PRUEBITA', options);
 
 // optionsValidationAndStats('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA', options);
 
