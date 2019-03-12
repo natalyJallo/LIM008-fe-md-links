@@ -31,8 +31,7 @@ var arrayOfFile = function arrayOfFile(route) {
   }
 
   return newArray;
-}; // console.log(arrayOfFile('test\\PRUEBITA'));
-
+};
 
 exports.arrayOfFile = arrayOfFile;
 
@@ -47,18 +46,16 @@ var filterToFileMd = function filterToFileMd(router) {
 exports.filterToFileMd = filterToFileMd;
 
 var regexFilterLinks = function regexFilterLinks(stringOfContentMd, route) {
-  // console.log(stringOfContentMd);
   var regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   var arrayOfObjData = [];
-  var array1 = regex1.exec(stringOfContentMd); // console.log(array1);
+  var array1 = regex1.exec(stringOfContentMd);
 
   while (array1 !== null) {
     var objectData = {
       text: array1[2].slice(0.50),
       href: array1[3],
       file: route
-    }; // console.log(objectData);
-
+    };
     arrayOfObjData.push(objectData);
     array1 = regex1.exec(stringOfContentMd);
   }
@@ -72,14 +69,11 @@ var readFileForExtracLinks = function readFileForExtracLinks(route) {
   var filterMd = filterToFileMd(route);
   var arrayOfLinks = [];
   filterMd.forEach(function (file) {
-    var content = fs.readFileSync(file, 'utf8'); // console.log(content);
-
-    var arrFileMd = regexFilterLinks(content, route); // console.log(arrFileMd);
-
+    var content = fs.readFileSync(file, 'utf8');
+    var arrFileMd = regexFilterLinks(content, route);
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks;
-}; // console.log(readFileForExtracLinks('test\\PRUEBITA'));
-
+};
 
 exports.readFileForExtracLinks = readFileForExtracLinks;

@@ -27,10 +27,7 @@ var totalstatsLinks = function totalstatsLinks(route) {
   };
 
   return statsFunctionOfLinks(objtStatLinks, route);
-}; // console.log(totalstatsLinks('test\\PRUEBITA'))
-//   .then(resp => console.log(resp))
-//   .catch(error => console.log(error));
-
+};
 
 exports.totalstatsLinks = totalstatsLinks;
 
@@ -43,12 +40,7 @@ var uniqueStatsLinks = function uniqueStatsLinks(route) {
   };
 
   return statsFunctionOfLinks(objtStatLinks, route);
-}; // uniqueStatsLinks([ { text: 'semver',
-//   href: 'https://semver.org/',
-//   file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ])
-//   .then(resp => console.log(resp))
-//   .catch(error => console.log(error));
-
+};
 
 exports.uniqueStatsLinks = uniqueStatsLinks;
 
@@ -60,11 +52,6 @@ var brokenStatsLinks = function brokenStatsLinks(route) {
   };
 
   return statsFunctionOfLinks(objtStatLinks, route);
-}; // brokenStatsLinks([ { text: 'semver',
-//   href: 'https://semver.org/',
-//   file: 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' } ])
-//   .then(resp => console.log(resp))
-//   .catch(error => console.log(error));
-
+};
 
 exports.brokenStatsLinks = brokenStatsLinks;

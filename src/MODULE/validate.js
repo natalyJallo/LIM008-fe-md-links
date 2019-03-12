@@ -24,12 +24,18 @@ var validationCorrectsLinks = function validationCorrectsLinks(route) {
           resolve(links);
         }
       }).catch(function (error) {
-        return reject(error);
+        links.status = 'URL Invalida';
+        links.message = 'Fail';
+        resolve(links);
       });
     });
   });
   return Promise.all(arrayPromises);
-}; // validationCorrectsLinks('test\\PRUEBITA').then(result => console.log(result));
-
+};
 
 exports.validationCorrectsLinks = validationCorrectsLinks;
+validationCorrectsLinks('test\\PRUEBA2').then(function (res) {
+  return console.log(res);
+}).catch(function (error) {
+  return console.log(error);
+});

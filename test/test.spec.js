@@ -2,29 +2,27 @@ import { converterPathAbsolute, arrayOfFile, filterToFileMd, regexFilterLinks, r
 
 const input = '../LIM008-fe-md-links/test/PRUEBITA/marked.js';
 
-const input1 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA';
+const input1 = `${process.cwd()}\\test\\PRUEBITA`;
 
 const input2 = `
 [semver](https://semver.org/)
 ![diferente](https://semver.org/)`;
 
-// const input3 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md';
+const output = `${process.cwd()}\\test\\PRUEBITA\\marked.js`;
 
-const output = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js';
+const output1 = [`${process.cwd()}\\test\\PRUEBITA\\marked.js`];
 
-const output1 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js'];
+const output2 = [ `${process.cwd()}\\test\\PRUEBITA\\dos\\koko.js.txt`,
+  `${process.cwd()}\\test\\PRUEBITA\\dos\\tres\\pepe.md.txt`,
+  `${process.cwd()}\\test\\PRUEBITA\\marked.js`,
+  `${process.cwd()}\\test\\PRUEBITA\\marked.md` ];
 
-const output2 = [ 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\dos\\koko.js.txt',
-  'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\dos\\tres\\pepe.md.txt',
-  'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.js',
-  'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md' ];
-
-const output3 = ['C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md'];
+const output3 = [`${process.cwd()}\\test\\PRUEBITA\\marked.md`];
 
 const output4 = [ { text: 'semver',
   href: 'https://semver.org/',
   file:
- 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA' } ];
+  `${process.cwd()}\\test\\PRUEBITA` } ];
 
  
 describe('converterPathAbsolute', () => {

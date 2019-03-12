@@ -21,47 +21,36 @@ export const arrayOfFile = (route) => {
   return newArray;
 };
 
-// console.log(arrayOfFile('test\\PRUEBITA'));
-
 export const filterToFileMd = (router) => {
   const arrayOfFilePath = arrayOfFile(router);
   const variableFiltrado = arrayOfFilePath.filter(route => path.extname(route) === '.md');
   return variableFiltrado;
 };
 
-
 export const regexFilterLinks = (stringOfContentMd, route) => {
-  // console.log(stringOfContentMd);
   const regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   let arrayOfObjData = [];
   let array1 = regex1.exec(stringOfContentMd);
-  // console.log(array1);
   while (array1 !== null) {
     const objectData = {
       text: array1[2].slice(0.50),
       href: array1[3],
       file: route
     };
-    // console.log(objectData);
     arrayOfObjData.push(objectData);
     array1 = regex1.exec(stringOfContentMd);
   }
   return arrayOfObjData;
 };
 
-
 export const readFileForExtracLinks = (route) => {
   const filterMd = filterToFileMd(route);
   let arrayOfLinks = [];
   filterMd.forEach((file) => {
     const content = fs.readFileSync(file, 'utf8');
-    // console.log(content);
     const arrFileMd = regexFilterLinks(content, route);
-    // console.log(arrFileMd);
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks ;
 };
-
-// console.log(readFileForExtracLinks('test\\PRUEBITA'));
 

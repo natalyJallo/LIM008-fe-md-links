@@ -15,9 +15,12 @@ export const validationCorrectsLinks = (route) => {
           links.message = 'Fail';
           resolve(links);
         }
-      }).catch(error => reject(error));
+      }).catch(error => {
+        links.status = 'URL Invalida';
+        links.message = 'Fail';
+        resolve(links);
+      });
   }));
   return Promise.all(arrayPromises);
 };
-
-// validationCorrectsLinks('test\\PRUEBITA').then(result => console.log(result));
+validationCorrectsLinks('test\\PRUEBA2').then((res) => console.log(res)).catch((error) => console.log(error));
