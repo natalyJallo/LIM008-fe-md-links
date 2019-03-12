@@ -15,17 +15,13 @@ if (args.length === 0) {
   console.log('Ingresa una ruta, ejemplo: md-links ./some/example\n');
 }
 
-var helpMe = function helpMe() {
-  console.log("\n Uso: \n\n$ md-links <path> <options> \n\n<path> es la ruta del archivo o carpeta a evaluar \n<options> tendr\xE1n los valores de:\n --stats o --s, muestra cantidad de links y cantidad de links \xFAnicos \n --validate o --v, muestra la ruta absoluta del archivo, texto de referencia, link, estado de link y mensaje de estado(Ok o fail) \n --stats --validate o --s --v, muestra cantidad de links, cantidad de links \xFAnicos y cantidad de links rotos\n");
-};
-
 if (args.length === 1) {
-  if (args[1] === '--help') {
-    helpMe();
+  if (args[0] === '--help') {
+    console.log("\n Uso: \n\n$ md-links <path> <options> \n\n<path> es la ruta del archivo o carpeta a evaluar \n<options> tendr\xE1n los valores de:\n    --stats o --s, muestra cantidad de links y cantidad de links \xFAnicos \n --validate o --v, muestra la ruta absoluta del archivo, texto de referencia, link, estado de link y mensaje de estado(Ok o fail) \n --stats --validate o --s --v, muestra cantidad de links, cantidad de links \xFAnicos y cantidad de links rotos\n");
   } else {
     (0, _mdLinks.mdLinks)(path, options).then(function (resp) {
       resp.forEach(function (values) {
-        return console.log(" Path: ".concat(values.file, "\n Link: ").concat(values.href, "\n Text: ").concat(values.text));
+        return console.log(" Path: ".concat(values.file, "\n Link: ").concat(values.href, "\n Text: ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text));
       });
     }).catch(function (err) {
       return err;
@@ -38,7 +34,7 @@ if (args.length === 2) {
     options.validate = true;
     (0, _mdLinks.mdLinks)(path, options).then(function (resp) {
       resp.forEach(function (values) {
-        return console.log(" Path: ".concat(values.file, "\n Link: ").concat(values.href, "\n Status: ").concat(values.status, "\n StatusText: ").concat(values.message, "\n Text: ").concat(values.text, "\n"));
+        return console.log(" Path: ".concat(values.file, "\n Link: ").concat(values.href, "\n Status: ").concat(values.status, "\n StatusText: ").concat(values.message, "\n Text: ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text, "\n"));
       });
     }).catch(function (err) {
       return err;
