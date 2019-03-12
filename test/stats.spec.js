@@ -31,7 +31,7 @@ describe('totalLinks', () => {
   });
   it('Debería contar el total de links', (done) => { 
     totalLinks(route).then(() => {
-      expect(totalLinks).toEqual(output1);
+      expect().toEqual(output1);
       done();
     }).catch(() => {
       done();

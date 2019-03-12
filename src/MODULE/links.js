@@ -47,9 +47,11 @@ var filterToFileMd = function filterToFileMd(router) {
 exports.filterToFileMd = filterToFileMd;
 
 var regexFilterLinks = function regexFilterLinks(stringOfContentMd, route) {
+  console.log(stringOfContentMd);
   var regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   var arrayOfObjData = [];
-  var array1 = regex1.exec(stringOfContentMd); // console.log(array1);
+  var array1 = regex1.exec(stringOfContentMd);
+  console.log(array1);
 
   while (array1 !== null) {
     var objectData = {
@@ -72,12 +74,13 @@ var readFileForExtracLinks = function readFileForExtracLinks(route) {
   var arrayOfLinks = [];
   filterMd.forEach(function (file) {
     var content = fs.readFileSync(file, 'utf8');
+    console.log(content);
     var arrFileMd = regexFilterLinks(content, route); // console.log(arrFileMd);
 
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks;
-}; // console.log(readFileForExtracLinks('test\\PRUEBITA'));
-
+};
 
 exports.readFileForExtracLinks = readFileForExtracLinks;
+console.log(readFileForExtracLinks('test\\PRUEBITA'));

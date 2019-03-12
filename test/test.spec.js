@@ -4,7 +4,9 @@ const input = '../LIM008-fe-md-links/test/PRUEBITA/marked.js';
 
 const input1 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA';
 
-const input2 = ['[semver](https://semver.org/)![diferente](https://semver.org/)'];
+const input2 = `
+[semver](https://semver.org/)
+![diferente](https://semver.org/)`;
 
 // const input3 = 'C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA\\marked.md';
 
@@ -59,7 +61,7 @@ describe('regexFilterLinks', () => {
   it('debería ser una función', () => {
     expect(typeof regexFilterLinks).toBe('function');
   });
-  it('Debería poder extraer los links del contenido markdown', () => {
+  it.only('Debería poder extraer los links del contenido markdown', () => {
     expect(regexFilterLinks(input2, input1)).toEqual(output4);
   });
 });
