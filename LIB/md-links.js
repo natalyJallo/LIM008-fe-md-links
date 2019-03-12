@@ -1,4 +1,3 @@
-import {statsLinks, uniqueStatsLinks, brokenStatsLinks} from './module/stats.js';
 import {validationCorrectsLinks} from './module/validate.js';
 import {readFileForExtracLinks} from './module/links.js';
 

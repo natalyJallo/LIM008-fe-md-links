@@ -23,4 +23,3 @@ export const validationCorrectsLinks = (route) => {
   }));
   return Promise.all(arrayPromises);
 };
-validationCorrectsLinks('test\\PRUEBA2').then((res) => console.log(res)).catch((error) => console.log(error));

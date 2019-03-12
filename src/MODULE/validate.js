@@ -34,8 +34,3 @@ var validationCorrectsLinks = function validationCorrectsLinks(route) {
 };
 
 exports.validationCorrectsLinks = validationCorrectsLinks;
-validationCorrectsLinks('test\\PRUEBA2').then(function (res) {
-  return console.log(res);
-}).catch(function (error) {
-  return console.log(error);
-});

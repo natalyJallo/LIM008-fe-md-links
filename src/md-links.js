@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.mdLinks = void 0;
 
-var _stats = require("./module/stats.js");
-
 var _validate = require("./module/validate.js");
 
 var _links = require("./module/links.js");
