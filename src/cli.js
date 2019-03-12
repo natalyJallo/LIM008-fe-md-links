@@ -43,7 +43,7 @@ if (args.length === 2) {
     }).catch(function (err) {
       return err;
     });
-  } else if (args[1] === '--stats' || args[2] === '--s') {
+  } else if (args[1] === '--stats' || args[1] === '--s') {
     Promise.all([(0, _stats.totalstatsLinks)(path), (0, _stats.uniqueStatsLinks)(path)]).then(function (resp) {
       return resp.forEach(function (values) {
         return console.log(values);
@@ -63,7 +63,7 @@ if (args.length === 3) {
     }).catch(function (err) {
       return err;
     });
-  } else if ((args[1] === '--stats' || args[2] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
+  } else if ((args[1] === '--stats' || args[1] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
     Promise.all([(0, _stats.totalstatsLinks)(path), (0, _stats.uniqueStatsLinks)(path), (0, _stats.brokenStatsLinks)(path)]).then(function (resp) {
       return resp.forEach(function (values) {
         return console.log(values);

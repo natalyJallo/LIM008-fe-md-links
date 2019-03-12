@@ -36,7 +36,7 @@ if (args.length === 2) {
     mdLinks(path, options).then((resp) => {
       resp.forEach(values => console.log(` Path: ${values.file}\n Link: ${values.href}\n Status: ${values.status}\n StatusText: ${values.message}\n Text: ${values.text}\n`));
     }).catch(err => err);
-  } else if (args[1] === '--stats' || args[2] === '--s') {
+  } else if (args[1] === '--stats' || args[1] === '--s') {
     Promise.all([totalstatsLinks(path),
       uniqueStatsLinks(path)
     ]).then(resp => resp.forEach(values => console.log(values))).catch(err => err);
@@ -49,7 +49,7 @@ if (args.length === 3) {
       uniqueStatsLinks(path),
       brokenStatsLinks(path)
     ]).then(resp => resp.forEach(values => console.log(values))).catch(err => err);
-  } else if ((args[1] === '--stats' || args[2] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
+  } else if ((args[1] === '--stats' || args[1] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
     Promise.all([totalstatsLinks(path),
       uniqueStatsLinks(path),
       brokenStatsLinks(path)
