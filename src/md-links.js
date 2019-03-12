@@ -11,25 +11,16 @@ var _validate = require("./module/validate.js");
 
 var _links = require("./module/links.js");
 
-var options = {
-  validate: false
-};
-
+// const options = {
+//   validate: false,
+// };
 var mdLinks = function mdLinks(route, options) {
-  var arrayObjectLinks = (0, _links.readFileForExtracLinks)(route);
-  var promise = options.validate ? (0, _validate.validationCorrectsLinks)(route).then(function (resp) {
-    resp.forEach(function (values) {
-      return console.log(values);
-    });
-  }) : console.log((0, _links.readFileForExtracLinks)(route)); // if (options.validate) {
-  //   validationCorrectsLinks(route);
-  // } else if (!options.validate) {
-  //   readFileForExtracLinks(route);
-  // };
-};
-
-exports.mdLinks = mdLinks;
-mdLinks('test\\PRUEBITA', options); // optionsValidationAndStats('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA', options);
+  var promise = options.validate ? (0, _validate.validationCorrectsLinks)(route) : new Promise(function (resolve) {
+    return resolve((0, _links.readFileForExtracLinks)(route));
+  });
+  return promise;
+}; // mdLinks('test\\PRUEBITA', options).then((res) => console.log(res));
+// optionsValidationAndStats('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA', options);
 // export const mdLinks = (route, options) => {
 //   let promises = 0;
 //   if (!options.validate && !options.stats) {
@@ -56,3 +47,6 @@ mdLinks('test\\PRUEBITA', options); // optionsValidationAndStats('C:\\Users\\nat
 //   };
 //   return promises;
 // };
+
+
+exports.mdLinks = mdLinks;

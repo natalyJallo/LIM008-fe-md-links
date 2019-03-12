@@ -11,7 +11,10 @@ const options = {
 };
 
 if (args.length === 1) {
-  mdLinks(path, options).forEach(values => console.log(` Path: ${values.file}\n Link: ${values.href}\n Text: ${values.text}`));
+  mdLinks(path, options).then((resp) => {
+    // console.log(resp);
+    resp.forEach(values => console.log(` Path: ${values.file}\n Link: ${values.href}\n Text: ${values.text}`));
+  }).catch(err => err);
 }
 
 if (args.length === 2) {
@@ -21,24 +24,24 @@ if (args.length === 2) {
       resp.forEach(values => console.log(` Path: ${values.file}\n Link: ${values.href}\n Status: ${values.status}\n StatusText: ${values.message}\n Text: ${values.text}\n`));
     }).catch(err => err);
   } else if (args[1] === '--stats' || args[2] === '--s') {
-    statsLinks(route),
-    uniqueStatsLinks(route)
-      .then(resp => resp.forEach(values => console.log(values))).catch(err => err);
+    Promise.all([statsLinks(route),
+      uniqueStatsLinks(route)
+    ]).then(resp => resp.forEach(values => console.log(values))).catch(err => err);
     console.log(mdLinks(path, option));
   } 
 }
 
 if (args.length === 3) {
   if ((args[1] === '--validate' || args[1] === '--v') && (args[2] === '--stats' || args[2] === '--s')) {
-    statsLinks(route),
-    uniqueStatsLinks(route),
-    brokenStatsLinks(route)
-      .then(resp => resp.forEach(values => console.log(values))).catch(err => err);
+    Promise.all([statsLinks(route),
+      uniqueStatsLinks(route),
+      brokenStatsLinks(route)
+    ]).then(resp => resp.forEach(values => console.log(values))).catch(err => err);
   } else if ((args[1] === '--stats' || args[2] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
-    statsLinks(route),
-    uniqueStatsLinks(route),
-    brokenStatsLinks(route)
-      .then(resp => resp.forEach(values => console.log(values))).catch(err => err);
+    Promise.all([statsLinks(route),
+      uniqueStatsLinks(route),
+      brokenStatsLinks(route)
+    ]).then(resp => resp.forEach(values => console.log(values))).catch(err => err);
   }
 }
 

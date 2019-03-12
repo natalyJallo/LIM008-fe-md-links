@@ -2,16 +2,17 @@ import {statsLinks, uniqueStatsLinks, brokenStatsLinks} from './module/stats.js'
 import {validationCorrectsLinks} from './module/validate.js';
 import {readFileForExtracLinks} from './module/links.js';
 
-const options = {
-  validate: false,
-};
+// const options = {
+//   validate: false,
+// };
 
 export const mdLinks = (route, options) => {
   const promise = options.validate
     ? validationCorrectsLinks(route)
-    : readFileForExtracLinks(route);
+    : new Promise((resolve) => resolve(readFileForExtracLinks(route)));
+  return promise;
 };
-// mdLinks('test\\PRUEBITA', options);
+// mdLinks('test\\PRUEBITA', options).then((res) => console.log(res));
 
 // optionsValidationAndStats('C:\\Users\\nataly\\Documents\\PROYECTOS DE FRONT END\\LIM008-fe-md-links\\test\\PRUEBITA', options);
 
