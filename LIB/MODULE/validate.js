@@ -1,6 +1,7 @@
 import {readFileForExtracLinks} from './links.js';
 const fetch = require('node-fetch');
 
+// Funcion que valida los links correctos y retorna una promesa.
 export const validationCorrectsLinks = (route) => {
   const walkArrayObjectLink = readFileForExtracLinks(route);
   const arrayPromises = walkArrayObjectLink.map(links => new Promise((resolve, reject) => {

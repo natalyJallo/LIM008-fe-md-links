@@ -7,7 +7,8 @@ exports.validationCorrectsLinks = void 0;
 
 var _links = require("./links.js");
 
-var fetch = require('node-fetch');
+var fetch = require('node-fetch'); // Funcion que valida los links correctos y retorna una promesa.
+
 
 var validationCorrectsLinks = function validationCorrectsLinks(route) {
   var walkArrayObjectLink = (0, _links.readFileForExtracLinks)(route);

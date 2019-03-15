@@ -1,13 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 
-export const converterPathAbsolute = (pathRelative) => {
-  const absolute = path.resolve(pathRelative);
-  return absolute;
-};
-
+// Funcion que retorna una array de archivos que contiene una ruta de un directorio o de un solo archivo.
 export const arrayOfFile = (route) => {
-  const routeAbsolute = converterPathAbsolute(route);
+  const routeAbsolute = path.resolve(route);
   let newArray = [];
   if (fs.lstatSync(routeAbsolute).isFile() === true) {
     newArray.push(routeAbsolute);
@@ -21,12 +17,16 @@ export const arrayOfFile = (route) => {
   return newArray;
 };
 
+// Funcion que filtra el array de archivos para solo obtener los archivos markdown.
 export const filterToFileMd = (router) => {
   const arrayOfFilePath = arrayOfFile(router);
-  const variableFiltrado = arrayOfFilePath.filter(route => path.extname(route) === '.md');
+  const variableFiltrado = arrayOfFilePath.filter(route => (path.extname(route)).toLowerCase() === '.md');
   return variableFiltrado;
 };
 
+// console.log(filterToFileMd('test\\PRUEBITA'));
+
+// Funcion que captura los links del contenido de los archivos markdown con el uso de expresiones regulares.
 export const regexFilterLinks = (stringOfContentMd, route) => {
   const regex1 = RegExp(/(^|[^!])\[(.*)\]\((.*)\)/gm);
   let arrayOfObjData = [];
@@ -43,6 +43,7 @@ export const regexFilterLinks = (stringOfContentMd, route) => {
   return arrayOfObjData;
 };
 
+// Funcion general que llama a las funciones de filtrado de archivos md y que captura los links de los archivos.
 export const readFileForExtracLinks = (route) => {
   const filterMd = filterToFileMd(route);
   let arrayOfLinks = [];
@@ -53,4 +54,6 @@ export const readFileForExtracLinks = (route) => {
   });
   return arrayOfLinks ;
 };
+
+// console.log(readFileForExtracLinks('test\\PRUEBITA'));
 

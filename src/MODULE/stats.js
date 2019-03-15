@@ -7,6 +7,9 @@ exports.brokenStatsLinks = exports.uniqueStatsLinks = exports.totalstatsLinks = 
 
 var _validate = require("./validate.js");
 
+var _links = require("./links.js");
+
+// Funcion que retorna el resultado despues de validar los links.
 var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
   return new Promise(function (resolve, reject) {
     var validationoflinks = (0, _validate.validationCorrectsLinks)(route);
@@ -17,30 +20,29 @@ var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
       return reject(error);
     });
   });
-};
+}; // Funcion que calcula el total de links.
+
 
 exports.statsFunctionOfLinks = statsFunctionOfLinks;
 
 var totalstatsLinks = function totalstatsLinks(route) {
-  var objtStatLinks = function objtStatLinks(response) {
-    return "Total: ".concat(response.length);
-  };
+  var arrayObjtLinks = (0, _links.readFileForExtracLinks)(route);
+  var objtStatLinks = arrayObjtLinks.length;
+  return "Total: ".concat(objtStatLinks);
+}; // Funcion que calcula el total de links unicos.
 
-  return statsFunctionOfLinks(objtStatLinks, route);
-};
 
 exports.totalstatsLinks = totalstatsLinks;
 
 var uniqueStatsLinks = function uniqueStatsLinks(route) {
-  var objtStatLinks = function objtStatLinks(links) {
-    return "Unique: ".concat(new Set(links.map(function (_ref) {
-      var href = _ref.href;
-      return href;
-    })).size);
-  };
+  var arrayObjtLinks = (0, _links.readFileForExtracLinks)(route);
+  var objtStatLinks = new Set(arrayObjtLinks.map(function (_ref) {
+    var href = _ref.href;
+    return href;
+  })).size;
+  return "Unique: ".concat(objtStatLinks);
+}; // Funcion que calcula el total de links rotos.
 
-  return statsFunctionOfLinks(objtStatLinks, route);
-};
 
 exports.uniqueStatsLinks = uniqueStatsLinks;
 

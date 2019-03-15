@@ -3,21 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.readFileForExtracLinks = exports.regexFilterLinks = exports.filterToFileMd = exports.arrayOfFile = exports.converterPathAbsolute = void 0;
+exports.readFileForExtracLinks = exports.regexFilterLinks = exports.filterToFileMd = exports.arrayOfFile = void 0;
 
 var path = require('path');
 
-var fs = require('fs');
+var fs = require('fs'); // Funcion que retorna una array de archivos que contiene una ruta de un directorio o de un solo archivo.
 
-var converterPathAbsolute = function converterPathAbsolute(pathRelative) {
-  var absolute = path.resolve(pathRelative);
-  return absolute;
-};
-
-exports.converterPathAbsolute = converterPathAbsolute;
 
 var arrayOfFile = function arrayOfFile(route) {
-  var routeAbsolute = converterPathAbsolute(route);
+  var routeAbsolute = path.resolve(route);
   var newArray = [];
 
   if (fs.lstatSync(routeAbsolute).isFile() === true) {
@@ -31,17 +25,20 @@ var arrayOfFile = function arrayOfFile(route) {
   }
 
   return newArray;
-};
+}; // Funcion que filtra el array de archivos para solo obtener los archivos markdown.
+
 
 exports.arrayOfFile = arrayOfFile;
 
 var filterToFileMd = function filterToFileMd(router) {
   var arrayOfFilePath = arrayOfFile(router);
   var variableFiltrado = arrayOfFilePath.filter(function (route) {
-    return path.extname(route) === '.md';
+    return path.extname(route).toLowerCase() === '.md';
   });
   return variableFiltrado;
-};
+}; // console.log(filterToFileMd('test\\PRUEBITA'));
+// Funcion que captura los links del contenido de los archivos markdown con el uso de expresiones regulares.
+
 
 exports.filterToFileMd = filterToFileMd;
 
@@ -61,7 +58,8 @@ var regexFilterLinks = function regexFilterLinks(stringOfContentMd, route) {
   }
 
   return arrayOfObjData;
-};
+}; // Funcion general que llama a las funciones de filtrado de archivos md y que captura los links de los archivos.
+
 
 exports.regexFilterLinks = regexFilterLinks;
 
@@ -74,6 +72,7 @@ var readFileForExtracLinks = function readFileForExtracLinks(route) {
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks;
-};
+}; // console.log(readFileForExtracLinks('test\\PRUEBITA'));
+
 
 exports.readFileForExtracLinks = readFileForExtracLinks;

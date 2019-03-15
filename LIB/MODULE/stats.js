@@ -1,5 +1,7 @@
 import {validationCorrectsLinks} from './validate.js';
+import {readFileForExtracLinks} from './links.js';
 
+// Funcion que retorna el resultado despues de validar los links.
 export const statsFunctionOfLinks = (response, route) => {
   return new Promise((resolve, reject) => { 
     const validationoflinks = validationCorrectsLinks(route);
@@ -10,16 +12,21 @@ export const statsFunctionOfLinks = (response, route) => {
   });
 };  
 
+// Funcion que calcula el total de links.
 export const totalstatsLinks = (route) => {
-  const objtStatLinks = response => `Total: ${response.length}`;
-  return statsFunctionOfLinks(objtStatLinks, route);
+  const arrayObjtLinks = readFileForExtracLinks(route);
+  const objtStatLinks = arrayObjtLinks.length;
+  return `Total: ${objtStatLinks}`;
 };
 
+// Funcion que calcula el total de links unicos.
 export const uniqueStatsLinks = (route) => {
-  const objtStatLinks = links => `Unique: ${new Set(links.map(({href}) => href)).size}`;
-  return statsFunctionOfLinks(objtStatLinks, route);
+  const arrayObjtLinks = readFileForExtracLinks(route);
+  const objtStatLinks = new Set(arrayObjtLinks.map(({href}) => href)).size;
+  return `Unique: ${objtStatLinks}`;
 };
 
+// Funcion que calcula el total de links rotos.
 export const brokenStatsLinks = (route) => {
   const objtStatLinks = links => `Broken: ${links.filter(link => link.message === 'Fail').length}`;
   return statsFunctionOfLinks(objtStatLinks, route);
