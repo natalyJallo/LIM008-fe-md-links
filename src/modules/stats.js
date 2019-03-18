@@ -3,36 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.brokenStatsLinks = exports.uniqueStatsLinks = exports.totalstatsLinks = exports.statsFunctionOfLinks = void 0;
+exports.brokenStatsLinks = exports.statsFunctionOfLinks = exports.uniqueStatsLinks = exports.totalstatsLinks = void 0;
 
 var _validate = require("./validate.js");
 
 var _links = require("./links.js");
 
-// Funcion que retorna el resultado despues de validar los links.
-var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
-  return new Promise(function (resolve, reject) {
-    var validationoflinks = (0, _validate.validationCorrectsLinks)(route);
-    validationoflinks.then(function (validLinks) {
-      var result = response(validLinks);
-      resolve(result);
-    }).catch(function (error) {
-      return reject(error);
-    });
-  });
-}; // Funcion que calcula el total de links.
-
-
-exports.statsFunctionOfLinks = statsFunctionOfLinks;
-
+// Funcion que calcula el total de links.
 var totalstatsLinks = function totalstatsLinks(route) {
   var arrayObjtLinks = (0, _links.readFileForExtracLinks)(route);
   var objtStatLinks = arrayObjtLinks.length;
   return "Total: ".concat(objtStatLinks);
-};
+}; // Funcion que calcula el total de links unicos.
+
 
 exports.totalstatsLinks = totalstatsLinks;
-console.log(totalstatsLinks('test\\PRUEBITA')); // Funcion que calcula el total de links unicos.
 
 var uniqueStatsLinks = function uniqueStatsLinks(route) {
   var arrayObjtLinks = (0, _links.readFileForExtracLinks)(route);
@@ -41,10 +26,26 @@ var uniqueStatsLinks = function uniqueStatsLinks(route) {
     return href;
   })).size;
   return "Unique: ".concat(objtStatLinks);
-}; // Funcion que calcula el total de links rotos.
+}; // Funcion que retorna el resultado despues de validar los links.
 
 
 exports.uniqueStatsLinks = uniqueStatsLinks;
+
+var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
+  return new Promise(function (resolve, reject) {
+    var validationoflinks = (0, _validate.validationCorrectsLinks)(route);
+    validationoflinks.then(function (validLinks) {
+      console.log(validationoflinks);
+      var result = response(validLinks);
+      resolve(result);
+    }).catch(function (error) {
+      return reject(error);
+    });
+  });
+}; // Funcion que calcula el total de links rotos.
+
+
+exports.statsFunctionOfLinks = statsFunctionOfLinks;
 
 var brokenStatsLinks = function brokenStatsLinks(route) {
   var objtStatLinks = function objtStatLinks(links) {
@@ -57,3 +58,4 @@ var brokenStatsLinks = function brokenStatsLinks(route) {
 };
 
 exports.brokenStatsLinks = brokenStatsLinks;
+console.log(brokenStatsLinks('test\\PRUEBITA'));

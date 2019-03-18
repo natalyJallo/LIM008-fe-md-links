@@ -57,8 +57,7 @@ var regexFilterLinks = function regexFilterLinks(stringOfContentMd, route) {
   }
 
   return arrayOfObjData;
-}; // console.log(filterToFileMd('test\\PRUEBITA'));
-// Funcion general que llama a las funciones de filtrado de archivos md y que captura los links de los archivos.
+}; // Funcion general que llama a las funciones de filtrado de archivos md y que captura los links de los archivos.
 
 
 exports.regexFilterLinks = regexFilterLinks;
@@ -72,7 +71,6 @@ var readFileForExtracLinks = function readFileForExtracLinks(route) {
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks;
-}; // console.log(readFileForExtracLinks('test\\PRUEBITA'));
-
+};
 
 exports.readFileForExtracLinks = readFileForExtracLinks;

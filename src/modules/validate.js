@@ -14,7 +14,7 @@ var validationCorrectsLinks = function validationCorrectsLinks(route) {
   var walkArrayObjectLink = (0, _links.readFileForExtracLinks)(route);
   var arrayPromises = walkArrayObjectLink.map(function (links) {
     return new Promise(function (resolve, reject) {
-      console.log(fetch(links.href)).then(function (response) {
+      fetch(links.href).then(function (response) {
         if (response.status >= 200 && response.status < 400) {
           links.status = response.status;
           links.message = response.statusText;
@@ -35,8 +35,3 @@ var validationCorrectsLinks = function validationCorrectsLinks(route) {
 };
 
 exports.validationCorrectsLinks = validationCorrectsLinks;
-validationCorrectsLinks('test\\PRUEBA2').then(function (resp) {
-  return console.log(resp);
-}).catch(function (error) {
-  return console.log(error);
-});

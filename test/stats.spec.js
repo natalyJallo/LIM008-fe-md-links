@@ -1,10 +1,16 @@
 import { statsFunctionOfLinks, totalstatsLinks, uniqueStatsLinks, brokenStatsLinks } from '../lib/modules/stats.js';
-import { validationCorrectsLinks } from '../lib/modules/validate.js';
-import { linkSync } from 'fs';
+const fetchMock = require('../__mocks__/node-fetch.js');
+fetchMock.config.sendAsJson = false;
+fetchMock.config.fallbackToNetwork = true;
 const path = require('path');
 
 const route = path.join(`${process.cwd()}`, '\\test\\PRUEBITA');
 const result = [ { text: 'semver',
+  href: 'https://semver.org/',
+  file: path.join(`${process.cwd()},\\test\\PRUEBITA`),
+  status: 200,
+  message: 'OK' },
+{ text: 'semver',
   href: 'https://semver.org/',
   file: path.join(`${process.cwd()},\\test\\PRUEBITA`),
   status: 200,
@@ -14,11 +20,15 @@ describe('statsFunctionOfLinks', () => {
   it('debería ser una función', () => {
     expect(typeof statsFunctionOfLinks).toBe('function');
   });
-  it('Debería retornar el conteo de links', (done) => {
-    statsFunctionOfLinks(route).then((response) => {
-      expect(response).toEqual(result);
+  it('Debería retornar un array de objetos de links validados', (done) => {
+    const objtStatLinks = links => `Broken: ${links.filter(link => link.message === 'Fail').length}`;
+    fetchMock
+      .mock('https://semver.org/', 200, {overwriteRoutes: true})
+      .mock('https://semver.org/', 200, {overwriteRoutes: true});
+    statsFunctionOfLinks(objtStatLinks, route).then((response) => {
+      expect(objtStatLinks(response)).toEqual(result);
       done();
-    });
+    }).catch(() => done());
   });
 });
 
@@ -26,7 +36,7 @@ describe('totalstatsLinks', () => {
   it('debería ser una función', () => {
     expect(typeof totalstatsLinks).toBe('function');
   });
-  it('Debería poder calcular el total de links unicos', () => {
+  it('Debería poder calcular el total de links', () => {
     expect(totalstatsLinks(route)).toEqual('Total: 2');
   });
 });
@@ -45,9 +55,11 @@ describe('brokenStatsLinks', () => {
   it('debería ser una función', () => {
     expect(typeof brokenStatsLinks).toBe('function');
   });
-  it('Debería contar el total de links', (done) => { 
+  it('Debería contar el total de links rotos', (done) => { 
     brokenStatsLinks(route).then((result) => {
       expect(result).toEqual('Broken: 0');
+      done();
+    }).catch(() => {
       done();
     });
   });
