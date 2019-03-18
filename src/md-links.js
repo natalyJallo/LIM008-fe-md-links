@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.mdLinks = void 0;
 
-var _validate = require("./module/module1/validate.js");
+var _validate = require("./modules/validate.js");
 
-var _links = require("./module/module1/links.js");
+var _links = require("./modules/links.js");
 
 // Funcion que recibe una ruta y la opcion de validar los links o la opcion de mostrar el array de links.
 var mdLinks = function mdLinks(route, options) {
