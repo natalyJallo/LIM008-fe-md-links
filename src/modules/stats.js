@@ -35,7 +35,6 @@ var statsFunctionOfLinks = function statsFunctionOfLinks(response, route) {
   return new Promise(function (resolve, reject) {
     var validationoflinks = (0, _validate.validationCorrectsLinks)(route);
     validationoflinks.then(function (validLinks) {
-      console.log(validationoflinks);
       var result = response(validLinks);
       resolve(result);
     }).catch(function (error) {
@@ -58,4 +57,3 @@ var brokenStatsLinks = function brokenStatsLinks(route) {
 };
 
 exports.brokenStatsLinks = brokenStatsLinks;
-console.log(brokenStatsLinks('test\\PRUEBITA'));

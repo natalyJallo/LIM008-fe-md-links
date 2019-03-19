@@ -6,9 +6,10 @@ var _mdLinks = require("./md-links.js");
 var _stats = require("./modules/stats.js");
 
 var argvProcess = process.argv.slice(2);
-var path = argvProcess[0]; // const option = {
-//   validate: false,
-// };
+var path = argvProcess[0];
+var option = {
+  validate: false
+};
 
 var comandLineFunction = function comandLineFunction(args, options) {
   if (args.length === 0) {

@@ -9,10 +9,7 @@ var _validate = require("./modules/validate.js");
 
 var _links = require("./modules/links.js");
 
-var option = {
-  validate: true
-}; // Funcion que recibe una ruta y la opcion de validar los links o la opcion de mostrar el array de links.
-
+// Funcion que recibe una ruta y la opcion de validar los links o la opcion de mostrar el array de links.
 var mdLinks = function mdLinks(route, options) {
   var promise = options.validate ? (0, _validate.validationCorrectsLinks)(route) : new Promise(function (resolve) {
     return resolve((0, _links.readFileForExtracLinks)(route));
@@ -21,4 +18,3 @@ var mdLinks = function mdLinks(route, options) {
 };
 
 exports.mdLinks = mdLinks;
-console.log(mdLinks('test\\PRUEBITA', option));
