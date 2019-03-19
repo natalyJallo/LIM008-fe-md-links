@@ -23,7 +23,7 @@ var comandLineFunction = function comandLineFunction(args, options) {
           return console.log("".concat(values.file, " ").concat(values.href, " ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text));
         });
       }).catch(function (err) {
-        return err;
+        return console.log(err);
       });
     }
   } else if (args.length === 2) {
@@ -34,7 +34,7 @@ var comandLineFunction = function comandLineFunction(args, options) {
           return console.log("".concat(values.file, " ").concat(values.href, " ").concat(values.message, " ").concat(values.status, " ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text));
         });
       }).catch(function (err) {
-        return err;
+        return console.log(err);
       });
     } else if (args[1] === '--stats' || args[1] === '--s') {
       Promise.all([(0, _stats.totalstatsLinks)(path), (0, _stats.uniqueStatsLinks)(path)]).then(function (resp) {
@@ -42,27 +42,21 @@ var comandLineFunction = function comandLineFunction(args, options) {
           return console.log(values);
         });
       }).catch(function (err) {
-        return err;
+        return console.log(err);
       });
     }
   } else if (args.length === 3) {
-    if ((args[1] === '--validate' || args[1] === '--v') && (args[2] === '--stats' || args[2] === '--s')) {
+    if ((args[1] === '--validate' || args[1] === '--v') && (args[2] === '--stats' || args[2] === '--s') || (args[1] === '--stats' || args[1] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
       Promise.all([(0, _stats.totalstatsLinks)(path), (0, _stats.uniqueStatsLinks)(path), (0, _stats.brokenStatsLinks)(path)]).then(function (resp) {
         return resp.forEach(function (values) {
           return console.log(values);
         });
       }).catch(function (err) {
-        return err;
-      });
-    } else if ((args[1] === '--stats' || args[1] === '--s') && (args[2] === '--validate' || args[2] === '--v')) {
-      Promise.all([(0, _stats.totalstatsLinks)(path), (0, _stats.uniqueStatsLinks)(path), (0, _stats.brokenStatsLinks)(path)]).then(function (resp) {
-        return resp.forEach(function (values) {
-          return console.log(values);
-        });
-      }).catch(function (err) {
-        return err;
+        return console.log(err);
       });
     }
+  } else {
+    console.log('Ingrese un comando correcto, si desea puede escribir el siguiente comando de ayuda --help');
   }
 };
 

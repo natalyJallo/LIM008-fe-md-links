@@ -57,3 +57,8 @@ var brokenStatsLinks = function brokenStatsLinks(route) {
 };
 
 exports.brokenStatsLinks = brokenStatsLinks;
+brokenStatsLinks('test\\PRUEBA2').then(function (res) {
+  return console.log(res);
+}).catch(function (error) {
+  return console.log(error);
+});
