@@ -3,7 +3,7 @@ const fetchMock = require('../__mocks__/node-fetch.js');
 fetchMock.config.sendAsJson = false;
 fetchMock.config.fallbackToNetwork = true;
 const path = require('path');
-const route = path.resolve(`${process.cwd()}\\test\\PRUEBITA`);
+const route = path.resolve(`${process.cwd()}/test/PRUEBITA`);
 
 const option = {
   validate: true,
@@ -15,23 +15,23 @@ const option2 = {
 const result = [ { text: 'semver',
   href: 'https://semver.org/',
   file:
-path.resolve(`${process.cwd()}\\test\\PRUEBITA`),
+path.resolve(`${process.cwd()}/test/PRUEBITA/lists.MD`),
   status: 200,
   message: 'OK' },
 { text: 'semver',
   href: 'https://semver.org/',
   file:
-path.resolve(`${process.cwd()}\\test\\PRUEBITA`),
+path.resolve(`${process.cwd()}/test/PRUEBITA/lists.MD`),
   status: 200,
   message: 'OK' }];  
 const result2 = [ { text: 'semver',
   href: 'https://semver.org/',
   file:
-path.resolve(`${process.cwd()}\\test\\PRUEBITA`) },
+path.resolve(`${process.cwd()}/test/PRUEBITA/lists.MD`) },
 { text: 'semver',
   href: 'https://semver.org/',
   file:
-path.resolve(`${process.cwd()}\\test\\PRUEBITA`) } ];
+path.resolve(`${process.cwd()}/test/PRUEBITA/lists.MD`) } ];
 
 describe('mdLinks', () => {
   it('debería ser una función', () => {

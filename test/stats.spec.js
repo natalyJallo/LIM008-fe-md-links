@@ -4,15 +4,15 @@ fetchMock.config.sendAsJson = false;
 fetchMock.config.fallbackToNetwork = true;
 const path = require('path');
 
-const route = path.resolve(`${process.cwd()}\\test\\PRUEBITA`);
+const route = path.resolve(`${process.cwd()}/test/PRUEBITA`);
 const result = [ { text: 'semver',
   href: 'https://semver.org/',
-  file: path.resolve(`${process.cwd()}\\test\\PRUEBITA`),
+  file: path.resolve(`${process.cwd()}/test/PRUEBITA/lists.MD`),
   status: 200,
   message: 'OK' },
 { text: 'semver',
   href: 'https://semver.org/',
-  file: path.resolve(`${process.cwd()}\\test\\PRUEBITA`),
+  file: path.resolve(`${process.cwd()}/test/PRUEBITA/lists.MD`),
   status: 200,
   message: 'OK' } ];
 
