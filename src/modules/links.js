@@ -67,7 +67,7 @@ var readFileForExtracLinks = function readFileForExtracLinks(route) {
   var arrayOfLinks = [];
   filterMd.forEach(function (file) {
     var content = fs.readFileSync(file, 'utf8');
-    var arrFileMd = regexFilterLinks(content, route);
+    var arrFileMd = regexFilterLinks(content, file);
     arrayOfLinks = arrayOfLinks.concat(arrFileMd);
   });
   return arrayOfLinks;

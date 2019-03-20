@@ -4,15 +4,15 @@ fetchMock.config.sendAsJson = false;
 fetchMock.config.fallbackToNetwork = true;
 const path = require('path');
 
-const route = path.join(`${process.cwd()}`, '\\test\\PRUEBITA');
+const route = path.resolve(`${process.cwd()}\\test\\PRUEBITA`);
 const result = [ { text: 'semver',
   href: 'https://semver.org/',
-  file: path.join(`${process.cwd()},\\test\\PRUEBITA`),
+  file: path.resolve(`${process.cwd()}\\test\\PRUEBITA`),
   status: 200,
   message: 'OK' },
 { text: 'semver',
   href: 'https://semver.org/',
-  file: path.join(`${process.cwd()},\\test\\PRUEBITA`),
+  file: path.resolve(`${process.cwd()}\\test\\PRUEBITA`),
   status: 200,
   message: 'OK' } ];
 
@@ -28,7 +28,7 @@ describe('statsFunctionOfLinks', () => {
     statsFunctionOfLinks(objtStatLinks, route).then((response) => {
       expect(objtStatLinks(response)).toEqual(result);
       done();
-    }).catch(() => done());
+    }).catch((error) => done());
   });
 });
 
