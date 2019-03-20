@@ -27,7 +27,7 @@ var validationCorrectsLinks = function validationCorrectsLinks(route) {
       }).catch(function (error) {
         links.status = 'URL Invalida';
         links.message = 'Fail';
-        reject(links);
+        resolve(links);
       });
     });
   });

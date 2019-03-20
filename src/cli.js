@@ -22,8 +22,8 @@ var comandLineFunction = function comandLineFunction(args, options) {
         resp.forEach(function (values) {
           return console.log("".concat(values.file, " ").concat(values.href, " ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text));
         });
-      }).catch(function (err) {
-        return console.log(err);
+      }).catch(function (values) {
+        return console.log("".concat(values.file, " ").concat(values.href, " ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text));
       });
     }
   } else if (args.length === 2) {
@@ -34,7 +34,7 @@ var comandLineFunction = function comandLineFunction(args, options) {
           return console.log("".concat(values.file, " ").concat(values.href, " ").concat(values.message, " ").concat(values.status, " ").concat(values.text.length > 50 ? "".concat(values.text.substring(0, 46), "...") : values.text));
         });
       }).catch(function (err) {
-        return console.log(err);
+        return err;
       });
     } else if (args[1] === '--stats' || args[1] === '--s') {
       Promise.all([(0, _stats.totalstatsLinks)(path), (0, _stats.uniqueStatsLinks)(path)]).then(function (resp) {
